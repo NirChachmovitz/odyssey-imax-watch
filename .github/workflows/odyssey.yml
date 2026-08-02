@@ -1,0 +1,25 @@
+name: Odyssey IMAX watch
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 min (GitHub cron is best-effort; may lag a few min)
+  workflow_dispatch: {}       # allow manual runs from the Actions tab
+
+# Avoid piling up runs if one is slow
+concurrency:
+  group: odyssey-watch
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check Odyssey IMAX showtimes
+        run: node check.mjs
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          THRESHOLD: '2026-08-12'
