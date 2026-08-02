@@ -3,7 +3,12 @@ name: Odyssey IMAX watch
 on:
   schedule:
     - cron: '*/15 * * * *'   # every 15 min (GitHub cron is best-effort; may lag a few min)
-  workflow_dispatch: {}       # allow manual runs from the Actions tab
+  workflow_dispatch:          # allow manual runs from the Actions tab
+    inputs:
+      threshold:
+        description: 'Threshold date (override for testing; a past date forces a test alert)'
+        required: false
+        default: '2026-08-12'
 
 # Avoid piling up runs if one is slow
 concurrency:
@@ -22,4 +27,4 @@ jobs:
         run: node check.mjs
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          THRESHOLD: '2026-08-12'
+          THRESHOLD: ${{ github.event.inputs.threshold || '2026-08-12' }}
