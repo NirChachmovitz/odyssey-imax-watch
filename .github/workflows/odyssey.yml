@@ -2,7 +2,7 @@ name: Odyssey IMAX watch
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # every 15 min (GitHub cron is best-effort; may lag a few min)
+    - cron: '*/5 * * * *'    # target :00,:05,:10... (rounded); NOTE GitHub cron is best-effort and often lags/coalesces to far less frequent
   workflow_dispatch:          # allow manual runs from the Actions tab
     inputs:
       threshold:
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '20'
       - name: Check Odyssey IMAX showtimes
-        run: node check.mjs
+        run: sleep 5 && node check.mjs   # small grace after the rounded minute, per request
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           THRESHOLD: ${{ github.event.inputs.threshold || '2026-08-12' }}
