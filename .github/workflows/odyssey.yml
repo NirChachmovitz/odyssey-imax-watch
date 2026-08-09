@@ -8,7 +8,7 @@ on:
       threshold:
         description: 'Threshold date (override for testing; a past date forces a test alert)'
         required: false
-        default: '2026-08-12'
+        default: '2026-08-19'
 
 # Avoid piling up runs if one is slow
 concurrency:
@@ -27,4 +27,4 @@ jobs:
         run: sleep 5 && node check.mjs   # small grace after the rounded minute, per request
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          THRESHOLD: ${{ github.event.inputs.threshold || '2026-08-12' }}
+          THRESHOLD: ${{ github.event.inputs.threshold || '2026-08-19' }}

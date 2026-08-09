@@ -1,7 +1,7 @@
 # Odyssey IMAX watch
 
 Checks whether **האודיסאה (The Odyssey)** has IMAX showtimes at **Planet Rishon LeZion**
-on any date **after 2026-08-12**, and sends a phone push (via [ntfy](https://ntfy.sh)) when it does.
+on any date **after 2026-08-19**, and sends a phone push (via [ntfy](https://ntfy.sh)) when it does.
 
 Runs entirely on **GitHub Actions** on a schedule — no server, no computer needed.
 
@@ -20,7 +20,7 @@ Runs entirely on **GitHub Actions** on a schedule — no server, no computer nee
 | var | default | meaning |
 |-----|---------|---------|
 | `NTFY_TOPIC` | *(secret)* | ntfy topic to push to |
-| `THRESHOLD` | `2026-08-12` | alert on show dates strictly after this |
+| `THRESHOLD` | `2026-08-19` | alert on show dates strictly after this |
 | `CINEMA` | `1072` | Planet Rishon LeZion |
 | `FILM_PREFIX` | `7460s2r` | The Odyssey |
 | `ATTR` | `imax` | required experience tag |

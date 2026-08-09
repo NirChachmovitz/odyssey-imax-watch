@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // One-shot check: is "האודיסאה" (The Odyssey) showing in IMAX at Planet Rishon LeZion
-// on any date BEYOND the threshold (default 2026-08-12)? If so, push a phone alert via ntfy.
+// on any date BEYOND the threshold (default 2026-08-19)? If so, push a phone alert via ntfy.
 // Stateless + Node built-ins only (fetch) — designed to run on a GitHub Actions cron.
 // Never exits non-zero, so the workflow stays green.
 
@@ -10,7 +10,7 @@ const CONFIG = {
   cinemaId: process.env.CINEMA || '1072',            // Planet Rishon LeZion
   filmPrefix: process.env.FILM_PREFIX || '7460s2r',  // האודיסאה (covers he + ru cuts)
   attr: process.env.ATTR || 'imax',
-  threshold: process.env.THRESHOLD || '2026-08-12',  // alert on dates strictly AFTER this
+  threshold: process.env.THRESHOLD || '2026-08-19',  // alert on dates strictly AFTER this
   ntfyTopic: process.env.NTFY_TOPIC || '',
   filmUrl: process.env.FILM_URL || 'https://www.planetcinema.co.il/films/the-odyssey/7460s2r',
   cinemaName: 'Planet Rishon LeZion',
